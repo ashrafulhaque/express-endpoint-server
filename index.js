@@ -1,3 +1,6 @@
+// Programmer: Md. Ashraful haque
+// Description: A Node.js and Express.js backend serving product data through RESTful API endpoints
+
 const express = require("express");
 const cors = require("cors");
 
@@ -17,14 +20,19 @@ app.get("/products", (req, res) => {
 });
 
 app.get("/products/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id; // No need to parse as integer
   const course = courseData.find((c) => c._id === id);
-
+  console.log(id, course);
   if (!course) {
-    return res.status(404).send("Course Not Found");
+    return res.status(404).send({ error: "Course Not Found" });
   }
 
   res.send(course);
+});
+
+// Handle undefined routes (404 Not Found)
+app.use((req, res) => {
+  res.status(404).send({ error: "Endpoint Not Found" });
 });
 
 app.listen(port, () => {
