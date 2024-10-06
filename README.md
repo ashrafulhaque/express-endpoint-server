@@ -75,7 +75,7 @@ The server will run on `http://localhost:4000` or the port specified in the `POR
 ### Live Link
 
 Live link of the deployed server is:
-`http://localhost:4000`
+`https://express-endpoint-server.vercel.app/`
 
 The backend will be accessible via the deployed URL.
 
