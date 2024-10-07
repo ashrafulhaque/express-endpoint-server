@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const app = express();
 
+// Enable CORS for all origins (suitable for testing)
 app.use(cors());
 
 const courseData = require("./data/courseDetails.json");
@@ -24,5 +25,9 @@ app.get("/products/:id", (req, res) => {
   res.send(course);
 });
 
-// Export the app to be used by Vercel
+// Handle undefined routes (404 Not Found)
+app.use((req, res) => {
+  res.status(404).send({ error: "Endpoint Not Found" });
+});
+
 module.exports = app;
